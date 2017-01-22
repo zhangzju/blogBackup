@@ -47,3 +47,4 @@ http.createServer(function(req, res) {
 ```
 
 在上面这点代码中，不发现，实际上整个请求的处理是经过了数据校验，busboy模块处理，最终的响应三个步骤。
+

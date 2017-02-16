@@ -1,3 +1,18 @@
-## gitflow的意义
+## gitlab flow的意义
 
 Version management with git makes branching and merging much easier than older versioning systems such as SVN. This allows a wide variety of branching strategies and workflows. Almost all of these are an improvement over the methods used before git. But many organizations end up with a workflow that is not clearly defined, overly complex or not integrated with issue tracking systems. Therefore we propose the GitLab flow as clearly defined set of best practices. It combines feature driven development and feature branches with issue tracking.
+
+使用git进行版本控制使得分支和合并相比于在SVN上来说更加容易了。git允许众多分支并行开发，以及支持工作流，这些都是git相比于之前使用的那些版本控制系统的优势，不过很多用户在使用git的时候却没有一个清晰的工作流，在协同工作时要么非常的复杂，要么没有能够结合issue tracking系统。因此在使用gitlab时，官方推荐采用Gitlab flow，它包含一些列最佳实践，有效的结合了issue tracking，利用了分支和功能驱动的特性。
+
+When converting to git you have to get used to the fact that there are three steps before a commit is shared with colleagues. Most version control systems have only one step, committing from the working copy to a shared server. In git you add files from the working copy to the staging area. After that you commit them to the local repo. The third step is pushing to a shared remote repository. After getting used to these three steps the branching model becomes the challenge.
+
+在转向使用git之际，我们必须了解到，一个提交的commit，或者说一个成果在被分享给同事们之前需要经过三个步骤，但是大部分的版本控制系统只需要一个步骤，即从本地提交到服务器上。在git之中，你需要首先将文件从working copy添加到staging area，这是手动的。然后将你的修改提交到本地的Repo，最后将其Push到你的远程仓库，在熟悉这三步之后，就可以开始学习如何利用分支功能了。
+
+Since many organizations new to git have no conventions how to work with it, it can quickly become a mess. The biggest problem they run into is that many long running branches that each contain part of the changes are around. People have a hard time figuring out which branch they should develop on or deploy to production. Frequently the reaction to this problem is to adopt a standardized pattern such as git flow and GitHub flow. We think there is still room for improvement and will detail a set of practices we call GitLab flow.
+
+很多组织一开始迁移到git的时候，并不是非常明白如何使用git来协作，这很快会带来一些问题。这其中最大的问题莫过于会出现大量的分支，各个分支之间各自为政，相互无法合并的糟糕状况。人们会花费很多时间去搞清楚那些分支是有用的，应该被开发的或者是可以被发布的。这个问题很快就在社区之中得到了新的解决方案，git flow和github flow。不过实际上我们觉得r鞥然后更好的解决方案，即gitlab flow。不过实际上我们觉得r鞥然后更好的解决方案，即gitlab
+
+## Git flow 存在的问题
+
+![gitdashflow](./imgs/gitdashflow.png)
+

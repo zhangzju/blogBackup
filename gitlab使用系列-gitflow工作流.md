@@ -35,3 +35,15 @@ In reaction to git flow a simpler alternative was detailed, GitHub flow. This fl
 
 ## 配置Production分支的GitLab flow 
 
+![production_branch](./imgs/production_branch.png)
+
+GitHub flow does assume you are able to deploy to production every time you merge a feature branch. This is possible for SaaS applications but are many cases where this is not possible. One would be a situation where you are not in control of the exact release moment, for example an iOS application that needs to pass App Store validation. Another example is when you have deployment windows (workdays from 10am to 4pm when the operations team is at full capacity) but you also merge code at other times. In these cases you can make a production branch that reflects the deployed code. You can deploy a new version by merging in master to the production branch. If you need to know what code is in production you can just checkout the production branch to see. The approximate time of deployment is easily visible as the merge commit in the version control system. This time is pretty accurate if you automatically deploy your production branch. If you need a more exact time you can have your deployment script create a tag on each deployment. This flow prevents the overhead of releasing, tagging and merging that is common to git flow.
+
+github_flow基于一个前提：每一次你合并到master分支，就会立刻进行deploy部署，对于需要部署到paas上的应用来说，这是比较适合的，然而对于其余的大部分场景，也许并不是特别适用。例如在开发人员无法控制什么版本发布的情况下，就像是iOS的应用，能否发布实际上还需要经过苹果的控制。在这样的情况下，我们可以通过新建一个production分支来解决这个问题，每当需要进行部署的时候，我们将当前的master分支merge到production分支上来，这样我们就可以查看每次发布的版本的代码。每次发布的时间也就和poduction分支的merge的时间非常接近，这样的做法避免了对release的过多的操作。
+
+## 配置Environment的 GitLab flow 
+
+![Environment_branche](./imgs/environment_branches.png)
+
+It might be a good idea to have an environment that is automatically updated to the master branch. Only in this case, the name of this environment might differ from the branch name. Suppose you have a staging environment, a pre-production environment and a production environment. In this case the master branch is deployed on staging. When someone wants to deploy to pre-production they create a merge request from the master branch to the pre-production branch. And going live with code happens by merging the pre-production branch into the production branch. This workflow where commits only flow downstream ensures that everything has been tested on all environments. If you need to cherry-pick a commit with a hotfix it is common to develop it on a feature branch and merge it into master with a merge request, do not delete the feature branch. If master is good to go (it should be if you are practicing continuous delivery) you then merge it to the other branches. If this is not possible because more manual testing is required you can send merge requests from the feature branch to the downstream branches. An 'extreme' version of environment branches are setting up an environment for each feature branch as done by Teatro.
+

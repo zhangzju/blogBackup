@@ -25,3 +25,13 @@ git flow是第一个采用分支来进行工作流管理的方案，也引起了
 现在有许多组织在开发中尝试着持续交付，这就意味着他们的默认分支理应可以被直接部署，那么默认分支master和release分支其实完全可以合二为一，一个典型的操作就是从将release分支合并回去。尽管有一些工具可以帮助我们遵循git flow，但是仍然需要文档说明以及提高了复杂性。常常会有开发者会犯一些类似于只合并到master、
 却没有合并到develop分支这样的错误，根本的原因还是git flow的整个流程过于复杂，同时发布一个版本并不意味着需要hotfixes，很多情况下热修复也不是那么有需要。
 
+## GitHub flow :轻量级的一个选择
+
+![githubflow](./imgs/github_flow.png)
+
+In reaction to git flow a simpler alternative was detailed, GitHub flow. This flow has only feature branches and a master branch. This is very simple and clean, many organizations have adopted it with great success. Atlassian recommends a similar strategy although they rebase feature branches. Merging everything into the master branch and deploying often means you minimize the amount of code in 'inventory' which is in line with the lean and continuous delivery best practices. But this flow still leaves a lot of questions unanswered regarding deployments, environments, releases and integrations with issues. With GitLab flow we offer additional guidance for these questions.
+
+为了解决git flow的复杂性，githab flow应运而生，更加简单和轻量级。githab flow只有master分支和feature分支，非常简单和整洁，很多组织使用github flow取得了成功。Atlassian公司也推荐了一种与此类似的策略，不过他们会将feature分支rebase掉。将所有的成果合并到master中去并且部署的话也就意味着我们需要将代码的更改量降到最低，这符合持续交付的最佳实践。但是这个工作流依然有一些无法解决的问题例如如何部署，如何处理环境依赖，发布版本以及和issues的集成等等，而在gitlab flow中就额外增加了这些。
+
+## 配置Production分支的GitLab flow 
+

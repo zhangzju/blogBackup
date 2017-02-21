@@ -41,7 +41,12 @@ gitlab_rails['gitlab_email_reply_to'] = 'noreply@example.com'
 ## 验证
 
 gitlab作为一个rails应用，也提供了运行bundle任务的接口，
-首先：
+首先，使用gitlab-rails进入控制台窗口：
+```shell
+ gitlab-rails console
+```
+
+然后使用内置对象Notify来发送一封测试邮件：
 ```ruby
  Notify.test_email('destination_email@address.com', 'Message Subject', 'Message Body').deliver_now
 ```

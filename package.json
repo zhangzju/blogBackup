@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/zhangzju/blogBackup#readme",
   "dependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "markdown-pdf": "^7.0.0"
+  },
+  "devDependencies": {
+    "gulp-markdown-pdf": "^4.0.0"
   }
 }

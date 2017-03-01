@@ -72,3 +72,47 @@ sudo docker run --rm my-boot2docker-img > boot2docker.iso
 4. 重新启动计算机，打开docker terminal，进入初始化。
 
 一般经过上面的步骤，即可解决网络问题。
+
+
+## 其他环境
+
+1. 在win10环境中，使用官方提供的基于Hyper-v虚拟机实现的安装包Docker for Windows即可，需要注意的是，Docker原生版本仅支持build10520以上的版本。
+2. 在Ubuntu环境中，12.04版本和14.04版本需要对内核进行升级或者添加补丁，使其支持LXC技术，因此推荐使用Xenial版本，即Ubuntu 16.04或者以上。目前
+我们公司的Ubuntu Xenial镜像源已经支持最新版本的docker环境，具体的操作如下：
+
+首先在虚拟机中安装好Ubuntu 16.04的虚拟机，配置好网络环境使其可以连接内网，然后下载配置好的内网源文件：
+```shell
+wget http://rdsource.tp-link.net/help/Ubuntu/xenial/sources.list
+```
+
+然后备份原有的Repo文件：
+```shell
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+```
+
+使用新的Repo文件来替换之前的Repo文件：
+```shell
+sudo cp sources.list /etc/apt/
+```
+更新镜像源信息：
+
+```shell
+sudo apt update&& sudo apt upgrade 
+```
+
+更新完毕没有报错，则可以安装docker环境：
+
+```shell
+sudo apt install docker.io
+```
+
+安装完成后，docker环境就已经配置完成，但是首先要重新启动一遍docker确保能够正确连接到docker 的daemon进程：
+```shell
+sudo systemctl restart docker.service
+```
+现在就可以使用Docker了:
+```shell
+sudo docker info
+```
+
+需要注意的是，docker的所有操作都需要在管理员权限下进行操作，切换到root用户是必须的。
